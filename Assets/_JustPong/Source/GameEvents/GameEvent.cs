@@ -10,7 +10,7 @@ namespace Ultilities
     {
         #region Private Fields
 
-        private HashSet<GameEventListener> listeners = new HashSet<GameEventListener>();
+        private readonly HashSet<GameEventListener> listeners = new();
 
         #endregion
 
