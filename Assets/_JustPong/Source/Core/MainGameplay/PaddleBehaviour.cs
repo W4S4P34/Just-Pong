@@ -30,9 +30,9 @@ public class PaddleBehaviour : MonoBehaviour
         }
 
         private bool _isOverlapped = false;
-        private bool _isFixed = false;
-        private int _value = 0;
-        public int Value
+        private bool _isSynced = false;
+        private Vector2 _value = Vector2.zero;
+        public Vector2 Value
         {
             private set { _value = value; }
             get
@@ -44,34 +44,34 @@ public class PaddleBehaviour : MonoBehaviour
                 else
                 {
                     _isOverlapped = false;
-                    _isFixed = false;
+                    _isSynced = false;
                 }
 
-                if (_isFixed) return _value;
+                if (_isSynced) return _value;
 
                 if (_isOverlapped)
                 {
-                    if (_value == 1)
+                    if (_value == Vector2.up)
                     {
-                        _value = -1;
+                        _value = Vector2.down;
                     }
-                    else if (_value == -1)
+                    else if (_value == Vector2.down)
                     {
-                        _value = 1;
+                        _value = Vector2.up;
                     }
-                    _isFixed = true;
+                    _isSynced = true;
                 }
                 else if (_up)
                 {
-                    _value = 1;
+                    _value = Vector2.up;
                 }
                 else if (_down)
                 {
-                    _value = -1;
+                    _value = Vector2.down;
                 }
                 else
                 {
-                    _value = 0;
+                    _value = Vector2.zero;
                 }
 
                 return _value;
@@ -97,7 +97,7 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void Update()
     {
-        _velocity = _MovementSpeed * _direction.Value * Vector2.up;
+        _velocity = _MovementSpeed * _direction.Value;
     }
 
     private void ClampPaddle(float bound)
