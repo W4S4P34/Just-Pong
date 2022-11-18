@@ -9,7 +9,7 @@ public class BallBehaviour : MonoBehaviour
 
     [Header("Movement Configs")]
     [SerializeField]
-    private float _DesiredSpeed = 7.5f;
+    private float _DesiredSpeed;
 
     private void Start()
     {
